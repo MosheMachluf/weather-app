@@ -42,5 +42,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+Weather.setup();
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`App run on port ${PORT}`));
