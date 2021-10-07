@@ -1,5 +1,5 @@
 export async function fetchWeather(city) {
-  const response = await fetch(`http://localhost:5000/`, {
+  const response = await fetch(`/`, {
     method: "POST",
     body: JSON.stringify({ city }),
     headers: {

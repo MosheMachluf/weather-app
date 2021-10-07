@@ -8,13 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
-
 app.post("/", async (req, res) => {
   const { city } = req.body;
 
@@ -42,5 +35,12 @@ app.post("/", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`App run on port ${PORT}`));
