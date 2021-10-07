@@ -6,13 +6,4 @@ const config = sqlite.open({
   driver: sqlite3.Database,
 });
 
-const setup = async () => {
-  const db = await config;
-  await db.migrate({
-    table: "weather",
-    migrationsPath: "./migrations/",
-  });
-};
-setup();
-
 module.exports = config;
