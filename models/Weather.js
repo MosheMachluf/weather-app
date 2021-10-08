@@ -5,14 +5,6 @@ const Utils = require("../services/Utils.js");
 const API_KEY = process.env.API_KEY;
 
 class Weather {
-  static async setup() {
-    const db = await dbPromise;
-    await db.migrate({
-      table: "weather",
-      migrationsPath: "./migrations/weather.sql",
-    });
-  }
-
   static async findInDB(city) {
     const db = await dbPromise;
     const result = await db.all("SELECT * FROM weather WHERE city = ?", [city]);

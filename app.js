@@ -5,6 +5,8 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 
+const dotenv = require("dotenv").config();
+
 app.use(cors());
 app.use(express.json());
 
@@ -34,15 +36,13 @@ app.post("/", async (req, res) => {
     res.status(500).send({ success: false, data: err });
   }
 });
-
+console.log(process.env.API_KEY);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-Weather.setup();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`App run on port ${PORT}`));
