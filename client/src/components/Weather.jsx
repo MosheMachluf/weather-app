@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { fetchWeather } from "../services/api";
 import useHttp from "../hooks/use-http";
 
@@ -6,18 +6,15 @@ import { Container } from "@mui/material";
 import SelectArea from "./SelectArea";
 
 const Weather = () => {
-  const { sendRequest, status, data } = useHttp(fetchWeather);
+  const { sendRequest, status, data, error } = useHttp(fetchWeather);
   const [area, setArea] = useState("");
-
-  useEffect(() => {
-    if (status === "completed") {
-    }
-  }, [status]);
 
   const handleChange = (value) => {
     setArea(value);
     sendRequest(value.split(",")[0]);
   };
+
+  if (error) return <h1>Error</h1>;
 
   return (
     <Container maxWidth="sm">

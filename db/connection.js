@@ -6,4 +6,15 @@ const config = sqlite.open({
   driver: sqlite3.Database,
 });
 
+// const setup = async () => {
+//   const db = await config;
+//   db.serialize;
+//   await db.migrate({
+//     force: false,
+//     table: "weather",
+//     migrationsPath: "./migrations",
+//   });
+// };
+// setup();
+
 module.exports = config;
